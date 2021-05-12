@@ -3,10 +3,12 @@ package io.lambdaworks.workshop.exceptions
 object PasswordChecker {
 
   def validate(password: String): Either[List[Throwable], String] = {
-    val list = List(minNumberOfChars(password, 5),
-                    containsUpperCase(password),
-                    containsLowerCase(password),
-                    containsNumber(password)).collect{case Left(x) => x}
+    val list = List(
+               minNumberOfChars(password, 5),
+               containsUpperCase(password),
+               containsLowerCase(password),
+               containsNumber(password)
+               ).collect{case Left(x) => x}
 
     if (list.isEmpty) {
       Right(password)
